@@ -1,5 +1,4 @@
 from enum import Enum, auto
-from unittest import result
 
 import streamlit as st
 
