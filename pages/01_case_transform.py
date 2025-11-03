@@ -2,9 +2,16 @@ from enum import Enum, auto
 
 import streamlit as st
 
+st.set_page_config('Case Transform', '🔠')
+
 st.title('Case Transform')
 
-src_text = st.text_area('Your Text')
+
+src_text = st.text_area(
+    'Your Text',
+    key='src_text',
+    placeholder='Enter your text here...',
+)
 
 
 class TrasnformTypes(Enum):
@@ -45,8 +52,8 @@ transform_type = st.selectbox(
 )
 
 if st.button('Transform', 'btn_transform', type='secondary'):
-    st.code(
-        transform_actions[transform_type][1](src_text),
-        language='python',
-    )
+    with st.container(border=True):
+        st.markdown(
+            transform_actions[transform_type][1](src_text),
+        )
     st.toast('Success', icon='✅')
